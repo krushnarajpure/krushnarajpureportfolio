@@ -1,0 +1,315 @@
+export const STORAGE_KEY = 'krushna-portfolio-cms';
+
+export const defaultPortfolioData = {
+  profile: {
+    name: 'Krushna Rajpure',
+    title: 'Java Full Stack Developer',
+    intro: 'Building scalable and responsive full-stack applications using Java, Spring Boot, React, and MySQL.',
+    email: 'krushnarajpure93@gmail.com',
+    phone: '+91 9860894960',
+    location: 'Nagpur, Maharashtra',
+    github: 'https://github.com/krushnarajpure',
+    linkedin: 'https://linkedin.com/in/krushna-rajpure',
+    resume: '/resume/krushna_bandu_rajpure_Resume.pdf',
+    availability: 'Available for work',
+    photo: '/src/profile/Yamini.jpg - Copy.jpeg',
+  },
+  about: {
+    heading: 'About Me',
+    summary: 'Information Technology Engineering student passionate about full-stack development. Strong understanding of OOP, DBMS, DSA, SQL, REST APIs, and modern web technologies. Currently focused on building scalable applications using React, Spring Boot, and MySQL.',
+    currentInternship: 'Frontend Developer Intern',
+    company: 'Athenura Technologies',
+    startDate: 'June 2026',
+    endDate: 'Present',
+    location: 'Remote',
+    quickFacts: [
+      { label: 'CGPA', value: '8.50 4th SEM' },
+      { label: 'Hackathon Wins', value: '2' },
+      { label: 'Projects', value: '4+' },
+      { label: 'Certificates', value: '6+' },
+      { label: 'Location', value: 'Nagpur, Maharashtra' },
+    ],
+    languages: ['Java', 'React', 'Spring Boot', 'MySQL'],
+  },
+  education: [
+    {
+      id: 'edu-1',
+      degree: 'Bachelor of Technology (B.Tech) in Information Technology',
+      institution: 'Tulsiramji Gaikwad-Patil College of Engineering & Technology, Nagpur',
+      duration: '2025 - 2028',
+      status: 'Currently Pursuing (3rd Year)',
+      current: true,
+      cgpa: '8.50',
+      percentage: '',
+      description: 'Pursuing core IT coursework and software engineering exposure.',
+      published: true,
+      order: 1,
+    },
+    {
+      id: 'edu-2',
+      degree: 'Diploma in Electronics & Telecommunication Engineering',
+      institution: 'Maharashtra State Board of Technical Education (MSBTE)',
+      duration: '2023 - 2025',
+      status: 'Completed',
+      current: false,
+      percentage: '84.00%',
+      cgpa: '',
+      description: 'Strong foundation in electronics and communication systems.',
+      published: true,
+      order: 2,
+    },
+    {
+      id: 'edu-3',
+      degree: 'Higher Secondary Certificate (HSC)',
+      institution: 'Maharashtra State Board',
+      duration: '2023',
+      status: 'Completed',
+      current: false,
+      percentage: '69.30%',
+      description: 'Completed higher secondary education.',
+      published: true,
+      order: 3,
+    },
+    {
+      id: 'edu-4',
+      degree: 'Secondary School Certificate (SSC)',
+      institution: 'Maharashtra State Board',
+      duration: '2021',
+      status: 'Completed',
+      current: false,
+      percentage: '77.60%',
+      description: 'Completed secondary school education.',
+      published: true,
+      order: 4,
+    },
+  ],
+  skills: [
+    { id: 'skill-1', name: 'HTML5', category: 'Frontend Development', icon: 'FaHtml5', color: '#E34F26', experience: 'Structure the Web', published: true, order: 1 },
+    { id: 'skill-2', name: 'CSS3', category: 'Frontend Development', icon: 'FaCss3Alt', color: '#1572B6', experience: 'Modern Styling', published: true, order: 2 },
+    { id: 'skill-3', name: 'JavaScript', category: 'Frontend Development', icon: 'FaJs', color: '#F7DF1E', experience: 'Interactive UI', published: true, order: 3 },
+    { id: 'skill-4', name: 'Tailwind CSS', category: 'Frontend Development', icon: 'SiTailwindcss', color: '#06B6D4', experience: 'Utility-first CSS', published: true, order: 4 },
+    { id: 'skill-5', name: 'React', category: 'Frontend Development', icon: 'FaReact', color: '#61DAFB', experience: 'Frontend Library', published: true, order: 5 },
+    { id: 'skill-6', name: 'Java', category: 'Backend Development', icon: 'FaJava', color: '#007396', experience: 'Core Programming', published: true, order: 1 },
+    { id: 'skill-7', name: 'OOP', category: 'Backend Development', icon: 'FaCode', color: '#00F5C3', experience: 'Object-Oriented Programming', published: true, order: 2 },
+    { id: 'skill-8', name: 'Spring Boot', category: 'Backend Development', icon: 'SiSpringboot', color: '#6DB33F', experience: 'Backend Framework', published: true, order: 3 },
+    { id: 'skill-9', name: 'REST API', category: 'Backend Development', icon: 'FaServer', color: '#00F5C3', experience: 'API Development', published: true, order: 4 },
+    { id: 'skill-10', name: 'MySQL', category: 'Backend Development', icon: 'FaDatabase', color: '#4479A1', experience: 'Relational Database', published: true, order: 5 },
+    { id: 'skill-11', name: 'Git', category: 'Tools & Platforms', icon: 'FaGitAlt', color: '#F05032', experience: 'Version Control', published: true, order: 1 },
+    { id: 'skill-12', name: 'GitHub', category: 'Tools & Platforms', icon: 'FaGithub', color: '#FFFFFF', experience: 'Code Collaboration', published: true, order: 2 },
+    { id: 'skill-13', name: 'Postman', category: 'Tools & Platforms', icon: 'SiPostman', color: '#FF6C37', experience: 'API Testing', published: true, order: 3 },
+    { id: 'skill-14', name: 'Vercel', category: 'Tools & Platforms', icon: 'SiVercel', color: '#000000', experience: 'Frontend Deployment', published: true, order: 4 },
+    { id: 'skill-15', name: 'Railway', category: 'Tools & Platforms', icon: 'SiRailway', color: '#9B3C3C', experience: 'Backend Deployment', published: true, order: 5 },
+  ],
+  projects: [
+    {
+      id: 'project-1',
+      title: 'Retail Billing Software',
+      slug: 'retail-billing-software',
+      shortDescription: 'A full-stack retail billing and inventory management system.',
+      description: 'A full-stack retail billing and inventory management system with billing, inventory tracking, customer management, analytics dashboard, and reporting.',
+      technologies: ['React', 'Spring Boot', 'MySQL'],
+      githubUrl: 'https://github.com/krushnarajpure/retail-billing-software',
+      demoUrl: 'https://reta-kappa.vercel.app/',
+      featured: true,
+      published: true,
+      image: '/src/project/RetailBillingSoftware.jpg.png',
+      order: 1,
+    },
+    {
+      id: 'project-2',
+      title: 'KrishiMitra – AI Powered Farmer Assistant',
+      slug: 'krishimitra-ai-powered-farmer-assistant',
+      shortDescription: 'Smart farming platform with crop recommendations and AI insights.',
+      description: 'An AI-powered smart farming platform that provides crop recommendations, weather forecasting, disease detection, and market price insights.',
+      technologies: ['React', 'Spring Boot', 'MySQL', 'REST API'],
+      githubUrl: 'https://github.com/bisen/krishimitra',
+      demoUrl: 'https://krishi-mitra-tan.vercel.app/',
+      featured: true,
+      published: true,
+      image: '/src/project/krishimitra.jpg.png',
+      order: 2,
+    },
+    {
+      id: 'project-3',
+      title: 'Personal Portfolio',
+      slug: 'personal-portfolio',
+      shortDescription: 'A cyberpunk-inspired developer portfolio built with React and Vite.',
+      description: 'A modern cyberpunk-inspired developer portfolio built with React, Vite, Tailwind CSS, and Framer Motion.',
+      technologies: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion'],
+      githubUrl: 'https://github.com/bisen/portfolio',
+      demoUrl: 'https://-portfolio-y9cd.vercel.app/',
+      featured: true,
+      published: true,
+      image: '/src/project/PersonalPorfolio.jpg.png',
+      order: 3,
+    },
+  ],
+  certificates: [
+    {
+      id: 'certificate-1',
+      title: 'Python Internship Certificate',
+      issuer: 'iBase Electrosoft LLP',
+      issueDate: '2025-09-29',
+      credentialId: 'IBASE-2025-01',
+      verificationUrl: '',
+      description: 'Internship certificate from iBase Electrosoft LLP.',
+      image: '/src/certificate/eduskills-java.png',
+      published: true,
+      order: 1,
+    },
+    {
+      id: 'certificate-2',
+      title: 'Artificial Intelligence Fundamentals',
+      issuer: 'IBM',
+      issueDate: '2024-05-01',
+      credentialId: 'IBM-AI-2024',
+      verificationUrl: '',
+      description: 'Achievement in AI fundamentals through IBM SkillsBuild.',
+      image: '/src/certificate/ibm.png',
+      published: true,
+      order: 2,
+    },
+    {
+      id: 'certificate-3',
+      title: 'Digital Productivity with AI',
+      issuer: 'YuWaah Generation Unlimited (UNICEF)',
+      issueDate: '2026-01-22',
+      credentialId: '',
+      verificationUrl: '',
+      description: 'Certificate in digital productivity with AI.',
+      image: '/src/certificate/web-development.png',
+      published: true,
+      order: 3,
+    },
+    {
+      id: 'certificate-4',
+      title: 'Artificial Intelligence Fundamentals',
+      issuer: 'IBM SkillsBuild',
+      issueDate: '2025-12-22',
+      credentialId: '',
+      verificationUrl: '',
+      description: 'IBM SkillsBuild artificial intelligence fundamentals certificate.',
+      image: '/src/certificate/react.png',
+      published: true,
+      order: 4,
+    },
+    {
+      id: 'certificate-5',
+      title: 'Cyber Job Simulation',
+      issuer: 'Deloitte',
+      issueDate: '2026-01-23',
+      credentialId: '',
+      verificationUrl: '',
+      description: 'Deloitte cyber job simulation certificate.',
+      image: '/src/certificate/javascript.png',
+      published: true,
+      order: 5,
+    },
+    {
+      id: 'certificate-6',
+      title: 'SQL Deep Dive',
+      issuer: 'IT Vedant',
+      issueDate: '2026-05-01',
+      credentialId: '',
+      verificationUrl: '',
+      description: 'SQL Deep Dive certificate from IT Vedant.',
+      image: '/src/certificate/sql.png',
+      published: true,
+      order: 6,
+    },
+  ],
+  achievements: [
+    {
+      id: 'achievement-1',
+      title: '1st Prize Winner',
+      event: 'IT Vedant Hackathon 2026',
+      organization: 'IT Vedant',
+      date: '2026-01-15',
+      description: 'Won 1st Prize at the IT Vedant Hackathon 2026 by building SignalMind.',
+      verificationUrl: '',
+      image: '/src/achievements/itvedant.jpg.jpeg',
+      published: true,
+      order: 1,
+    },
+    {
+      id: 'achievement-2',
+      title: '2nd Runner-Up',
+      event: 'Athenura Hackathon 2026',
+      organization: 'Athenura Technologies',
+      date: '2026-01-01',
+      description: 'Secured 2nd Runner-Up by developing KrishiMitra, an AI-powered farmer assistant.',
+      verificationUrl: '',
+      image: '/src/achievements/Athnura .jpg.png',
+      published: true,
+      order: 2,
+    },
+  ],
+  experience: [
+    {
+      id: 'experience-1',
+      title: 'Frontend Developer Intern',
+      company: 'Athenura Technologies',
+      employmentType: 'Internship',
+      location: 'Remote',
+      startDate: '2026-06-01',
+      endDate: '',
+      current: true,
+      description: 'Currently working as a Frontend Developer Intern at Athenura Technologies, developing modern responsive web applications.',
+      responsibilities: ['Responsive UI Development', 'REST API Integration', 'Team Collaboration'],
+      technologies: ['React.js', 'JavaScript', 'Tailwind CSS', 'REST API'],
+      published: true,
+      order: 1,
+    },
+  ],
+  socialLinks: [
+    { id: 'social-1', platform: 'GitHub', url: 'https://github.com/krushnarajpure', icon: 'FaGithub', published: true, order: 1 },
+    { id: 'social-2', platform: 'LinkedIn', url: 'https://linkedin.com/in/krushna-rajpure', icon: 'FaLinkedin', published: true, order: 2 },
+  ],
+  contactMessages: [],
+  settings: {
+    siteTitle: 'Krushna Rajpure | Portfolio',
+    seoTitle: 'Krushna Rajpure | Java Full Stack Developer',
+    seoDescription: 'Portfolio of Krushna Rajpure, a Java Full Stack Developer passionate about modern web applications.',
+    contactAvailability: 'Open for projects and opportunities',
+    publicVisibility: true,
+  },
+};
+
+export const safeReadLocalStorage = () => {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return defaultPortfolioData;
+    const parsed = JSON.parse(raw);
+    const savedSkills = Array.isArray(parsed.skills) ? parsed.skills : [];
+    const skills = savedSkills.length < 15
+      ? defaultPortfolioData.skills.map((skill) => savedSkills.find((savedSkill) => savedSkill.id === skill.id) || skill)
+      : savedSkills;
+    return { ...defaultPortfolioData, ...parsed, skills };
+  } catch (error) {
+    console.warn('Local portfolio storage unavailable, using defaults.', error);
+    return defaultPortfolioData;
+  }
+};
+
+export const writeLocalPortfolio = (data) => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  return data;
+};
+
+export const addContactMessage = (message) => {
+  const current = safeReadLocalStorage();
+  const next = {
+    ...current,
+    contactMessages: [
+      {
+        id: `msg-${Date.now()}`,
+        ...message,
+        status: 'new',
+        createdAt: new Date().toISOString(),
+      },
+      ...current.contactMessages,
+    ],
+  };
+  writeLocalPortfolio(next);
+  return next;
+};
