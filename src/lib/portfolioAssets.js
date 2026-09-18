@@ -11,6 +11,7 @@ import webDevCertificate from '../certificate/web-development.png';
 import itvedantCertificate from '../achievements/itvedant.jpg.jpeg';
 import athenuraCertificate from '../achievements/Athnura .jpg.png';
 import profileImage from '../profile/Yamini.jpg - Copy.jpeg';
+import { supabaseStorageBucket, supabaseUrl } from './supabase';
 
 const assets = {
   '/src/project/krishimitra.jpg.png': krishiMitraImage,
@@ -29,5 +30,16 @@ const assets = {
 };
 
 export function resolvePortfolioAsset(source) {
-  return assets[source] || source;
+  if (!source) return '';
+  if (assets[source]) return assets[source];
+  if (/^(data:|blob:|https?:\/\/)/i.test(source)) return source;
+  if (source.startsWith('/')) return source;
+
+  const storagePath = source
+    .replace(/^\/?storage\/v1\/object\/(?:public|sign)\/[^/]+\//i, '')
+    .replace(/^\/+/, '');
+
+  return supabaseUrl && supabaseStorageBucket
+    ? `${supabaseUrl}/storage/v1/object/public/${supabaseStorageBucket}/${storagePath}`
+    : source;
 }

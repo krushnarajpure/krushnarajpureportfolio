@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useState, useRef } from 'react';
-import { usePortfolio } from '../context/PortfolioContext';
 import { 
   FaHtml5, 
   FaCss3Alt, 
@@ -12,14 +11,118 @@ import {
   FaDatabase,
   FaServer,
   FaCode,
-  FaProjectDiagram
+  FaNodeJs,
+  FaPython,
+  FaBolt,
+  FaCuttlefish
 } from 'react-icons/fa';
-import { SiTailwindcss, SiSpringboot, SiPostman, SiVercel, SiRailway } from 'react-icons/si';
+import {
+  SiTailwindcss,
+  SiSpringboot,
+  SiPostman,
+  SiVercel,
+  SiRailway,
+  SiNextdotjs,
+  SiBootstrap,
+  SiVite,
+  SiExpress,
+  SiFlask,
+  SiFastapi,
+  SiMongodb,
+  SiPostgresql,
+  SiPrisma,
+  SiSupabase,
+  SiNpm,
+  SiNetlify,
+  SiGithubpages,
+  SiGooglegemini,
+  SiOpenai,
+  SiOpencv,
+  SiMediapipe,
+} from 'react-icons/si';
 
-const iconMap = { FaHtml5, FaCss3Alt, FaJs, FaReact, FaJava, FaGithub, FaGitAlt, FaDatabase, FaServer, FaCode, FaProjectDiagram, SiTailwindcss, SiSpringboot, SiPostman, SiVercel, SiRailway };
+const skillCategories = [
+  {
+    title: 'Frontend Development',
+    skills: [
+      ['HTML5', 'Structure and semantics', FaHtml5, '#E34F26'],
+      ['CSS3', 'Modern visual styling', FaCss3Alt, '#1572B6'],
+      ['JavaScript', 'Interactive web experiences', FaJs, '#F7DF1E'],
+      ['React.js', 'Component-driven interfaces', FaReact, '#61DAFB'],
+      ['Next.js', 'Full-stack React framework', SiNextdotjs, '#FFFFFF'],
+      ['Tailwind CSS', 'Utility-first styling', SiTailwindcss, '#06B6D4'],
+      ['Bootstrap', 'Responsive UI toolkit', SiBootstrap, '#7952B3'],
+      ['Vite', 'Fast frontend tooling', SiVite, '#646CFF'],
+    ],
+  },
+  {
+    title: 'Backend Development',
+    skills: [
+      ['Node.js', 'JavaScript runtime', FaNodeJs, '#339933'],
+      ['Express.js', 'Minimal web framework', SiExpress, '#FFFFFF'],
+      ['Java', 'Object-oriented programming', FaJava, '#007396'],
+      ['Spring Boot', 'Production backend framework', SiSpringboot, '#6DB33F'],
+      ['Python', 'Versatile backend language', FaPython, '#3776AB'],
+      ['Flask', 'Lightweight Python framework', SiFlask, '#FFFFFF'],
+      ['FastAPI', 'High-performance API framework', SiFastapi, '#009688'],
+      ['REST API', 'Service integration layer', FaServer, '#00F5C3'],
+    ],
+  },
+  {
+    title: 'Databases',
+    skills: [
+      ['MySQL', 'Relational data storage', FaDatabase, '#4479A1'],
+      ['MongoDB', 'Document database', SiMongodb, '#47A248'],
+      ['PostgreSQL', 'Advanced relational database', SiPostgresql, '#4169E1'],
+      ['Supabase', 'Backend-as-a-service platform', SiSupabase, '#3ECF8E'],
+      ['Prisma', 'Type-safe database toolkit', SiPrisma, '#FFFFFF'],
+    ],
+  },
+  {
+    title: 'Programming Languages',
+    skills: [
+      ['C', 'Foundational programming', FaCuttlefish, '#A8B9CC'],
+      ['C++', 'Systems programming', FaCode, '#659AD2'],
+      ['Java', 'Object-oriented programming', FaJava, '#007396'],
+      ['Python', 'Readable general-purpose language', FaPython, '#3776AB'],
+      ['JavaScript', 'Web programming language', FaJs, '#F7DF1E'],
+      ['SQL', 'Database query language', FaDatabase, '#00A8E8'],
+    ],
+  },
+  {
+    title: 'Tools & Platforms',
+    skills: [
+      ['Git', 'Version control', FaGitAlt, '#F05032'],
+      ['GitHub', 'Code collaboration', FaGithub, '#FFFFFF'],
+      ['VS Code', 'Developer workspace', FaCode, '#007ACC'],
+      ['Postman', 'API testing', SiPostman, '#FF6C37'],
+      ['npm', 'JavaScript package manager', SiNpm, '#CB3837'],
+      ['MongoDB Compass', 'Database administration', SiMongodb, '#47A248'],
+    ],
+  },
+  {
+    title: 'Cloud & Deployment',
+    skills: [
+      ['Vercel', 'Frontend deployment', SiVercel, '#FFFFFF'],
+      ['Netlify', 'Web hosting platform', SiNetlify, '#00C7B7'],
+      ['Railway', 'Backend deployment', SiRailway, '#9B3C3C'],
+      ['GitHub Pages', 'Static site hosting', SiGithubpages, '#FFFFFF'],
+    ],
+  },
+  {
+    title: 'AI & Other Technologies',
+    skills: [
+      ['Generative AI', 'Intelligent content creation', SiOpenai, '#FFFFFF'],
+      ['AI API Integration', 'Connected AI workflows', FaBolt, '#00F5C3'],
+      ['Groq API', 'Fast AI inference', FaBolt, '#F55036'],
+      ['Google Gemini API', 'Multimodal AI services', SiGooglegemini, '#8AB4F8'],
+      ['MediaPipe', 'Real-time ML solutions', SiMediapipe, '#00BFA5'],
+      ['OpenCV', 'Computer vision toolkit', SiOpencv, '#5C3EE8'],
+    ],
+  },
+];
 
 const Skills = () => {
-  const { portfolio } = usePortfolio();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const sectionRef = useRef(null);
 
@@ -31,22 +134,6 @@ const Skills = () => {
       y: e.clientY - rect.top,
     });
   };
-
-  const groupedSkills = (portfolio.skills || []).filter((skill) => skill.published !== false).reduce((groups, skill) => {
-    const category = skill.category || 'Other Technologies';
-    groups[category] = groups[category] || [];
-    groups[category].push({
-      ...skill,
-      icon: iconMap[skill.icon] || FaProjectDiagram,
-      color: skill.color || '#00F5C3',
-      description: skill.experience || skill.proficiency || 'Technology',
-    });
-    return groups;
-  }, {});
-  const skillCategories = Object.entries(groupedSkills).map(([title, skills]) => ({
-    title,
-    skills: skills.sort((first, second) => Number(first.order || 0) - Number(second.order || 0)),
-  }));
 
   return (
     <section 
@@ -135,12 +222,11 @@ const Skills = () => {
             </div>
 
             {/* Skills Grid - Centered */}
-            <div className="mx-auto grid max-w-[990px] grid-cols-2 justify-items-center gap-x-4 gap-y-6 md:grid-cols-3 lg:mx-auto lg:w-[990px] lg:max-w-none lg:grid-cols-[repeat(5,138px)] lg:gap-x-[73px] lg:gap-y-6">
-              {category.skills.map((skill, skillIndex) => {
-                const Icon = skill.icon;
+            <div className="mx-auto grid w-full max-w-[1180px] grid-cols-2 justify-items-center gap-x-4 gap-y-6 md:grid-cols-3 lg:mx-auto lg:grid-cols-5 lg:gap-6">
+              {category.skills.map(([name, description, Icon, color], skillIndex) => {
                 return (
                   <motion.div
-                    key={skillIndex}
+                    key={`${category.title}-${name}`}
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -156,12 +242,12 @@ const Skills = () => {
                       backgroundColor: 'rgba(15, 15, 15, 0.9)',
                     }}
                     className="relative cursor-pointer"
-                    aria-label={`${skill.name} - ${skill.description}`}
+                    aria-label={`${name} - ${description}`}
                     role="button"
                     tabIndex={0}
                     style={{
-                      width: '138px',
-                      height: '92px',
+                      width: '100%',
+                      minHeight: '112px',
                       backgroundColor: 'rgba(15, 15, 15, 0.75)',
                       borderRadius: '12px',
                       border: '1px solid rgba(0, 255, 200, 0.18)',
@@ -177,17 +263,17 @@ const Skills = () => {
                       >
                         <div className="absolute inset-0 bg-[rgba(0,245,195,0.15)] blur-xl rounded-full opacity-0 hover:opacity-100 transition-opacity duration-350" />
                         <Icon 
-                          size={26} 
-                          style={{ color: skill.color }}
+                          size={32}
+                          style={{ color }}
                           className="relative z-10"
                         />
                       </motion.div>
                       <div className="mt-1 text-center">
                         <span className="block font-space text-[11px] font-semibold leading-tight text-white">
-                          {skill.name}
+                          {name}
                         </span>
                         <span className="mt-1 block font-space text-[9px] leading-tight text-text-secondary">
-                          {skill.description}
+                          {description}
                         </span>
                       </div>
                     </div>

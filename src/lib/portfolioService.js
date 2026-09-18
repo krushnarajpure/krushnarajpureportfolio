@@ -172,14 +172,16 @@ export async function deleteContactMessage(id) {
   return error ? { ok: false, message: error.message } : { ok: true };
 }
 
-export async function uploadPortfolioFile(file) {
+export async function uploadPortfolioFile(file, folder = '') {
   const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'];
   const maxBytes = 10 * 1024 * 1024;
   if (!file || !allowedTypes.includes(file.type)) return { ok: false, message: 'Use JPG, PNG, WEBP, or PDF files.' };
   if (file.size > maxBytes) return { ok: false, message: 'Files must be smaller than 10 MB.' };
   if (!hasSupabaseConfig || !supabase) return { ok: false, message: 'Configure Supabase before uploading media.' };
 
-  const path = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '-')}`;
+  const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '-');
+  const fileName = `${Date.now()}-${safeName}`;
+  const path = folder ? `${folder}/${fileName}` : fileName;
   const { error } = await supabase.storage.from(supabaseStorageBucket).upload(path, file, { upsert: false, contentType: file.type });
   if (error) return { ok: false, message: error.message };
   const { data } = supabase.storage.from(supabaseStorageBucket).getPublicUrl(path);
