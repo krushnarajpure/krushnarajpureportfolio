@@ -1,9 +1,12 @@
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+export const supabaseStorageBucket = import.meta.env.VITE_SUPABASE_STORAGE_BUCKET;
 
-export const supabase = supabaseUrl && supabaseAnonKey
+const isPlaceholder = (value) => !value || /your-project|your-anon-key/i.test(value);
+
+export const supabase = !isPlaceholder(supabaseUrl) && !isPlaceholder(supabaseAnonKey)
   ? createClient(supabaseUrl, supabaseAnonKey, {
       auth: {
         persistSession: true,
@@ -14,8 +17,6 @@ export const supabase = supabaseUrl && supabaseAnonKey
   : null;
 
 export const hasSupabaseConfig = Boolean(
-  supabaseUrl &&
-  supabaseAnonKey &&
-  !supabaseUrl.includes('your-project') &&
-  !supabaseAnonKey.includes('your-anon-key')
+  supabase &&
+  !isPlaceholder(supabaseStorageBucket)
 );

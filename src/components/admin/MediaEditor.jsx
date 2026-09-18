@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { deletePortfolioFile, getPortfolioMedia, uploadPortfolioFile } from '../../lib/portfolioService';
+import { supabaseStorageBucket } from '../../lib/supabase';
 
 export default function MediaEditor() {
   const [media, setMedia] = useState([]);
@@ -39,7 +40,7 @@ export default function MediaEditor() {
       {status && <p className="text-sm text-[#00F5C3]">{status}</p>}
       {media.length === 0 ? <div className="rounded-2xl border border-dashed border-[#00F5C3]/30 p-8 text-center text-sm text-gray-400">No uploaded media found.</div> : media.map((item) => (
         <div key={item.id} className="flex flex-col gap-3 rounded-2xl border border-[#00F5C3]/20 bg-[#111815] p-4 md:flex-row md:items-center md:justify-between">
-          <a href={`${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/portfolio-media/${item.path}`} target="_blank" rel="noreferrer" className="truncate text-sm text-[#00F5C3]">{item.name}</a>
+          <a href={`${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/${supabaseStorageBucket}/${item.path}`} target="_blank" rel="noreferrer" className="truncate text-sm text-[#00F5C3]">{item.name}</a>
           <button type="button" onClick={() => handleDelete(item)} className="rounded-lg border border-red-500/30 px-3 py-2 text-xs text-red-300">Delete</button>
         </div>
       ))}

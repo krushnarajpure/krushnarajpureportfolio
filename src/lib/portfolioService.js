@@ -1,5 +1,5 @@
 import { addContactMessage, defaultPortfolioData, safeReadLocalStorage, writeLocalPortfolio } from './portfolioStorage';
-import { hasSupabaseConfig, supabase } from './supabase';
+import { hasSupabaseConfig, supabase, supabaseStorageBucket } from './supabase';
 
 const collectionTables = {
   skills: 'skills',
@@ -180,9 +180,9 @@ export async function uploadPortfolioFile(file) {
   if (!hasSupabaseConfig || !supabase) return { ok: false, message: 'Configure Supabase before uploading media.' };
 
   const path = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '-')}`;
-  const { error } = await supabase.storage.from('portfolio-media').upload(path, file, { upsert: false, contentType: file.type });
+  const { error } = await supabase.storage.from(supabaseStorageBucket).upload(path, file, { upsert: false, contentType: file.type });
   if (error) return { ok: false, message: error.message };
-  const { data } = supabase.storage.from('portfolio-media').getPublicUrl(path);
+  const { data } = supabase.storage.from(supabaseStorageBucket).getPublicUrl(path);
   await supabase.from('portfolio_media').insert({ name: file.name, path, mime_type: file.type, size_bytes: file.size });
   return { ok: true, url: data.publicUrl, path };
 }
@@ -195,7 +195,7 @@ export async function getPortfolioMedia() {
 
 export async function deletePortfolioFile(media) {
   if (!hasSupabaseConfig || !supabase) return { ok: false, message: 'Configure Supabase before deleting media.' };
-  const { error: storageError } = await supabase.storage.from('portfolio-media').remove([media.path]);
+  const { error: storageError } = await supabase.storage.from(supabaseStorageBucket).remove([media.path]);
   if (storageError) return { ok: false, message: storageError.message };
   const { error } = await supabase.from('portfolio_media').delete().eq('id', media.id);
   return error ? { ok: false, message: error.message } : { ok: true };
