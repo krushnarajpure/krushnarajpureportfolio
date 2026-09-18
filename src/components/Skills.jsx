@@ -135,7 +135,7 @@ const Skills = () => {
             </div>
 
             {/* Skills Grid - Centered */}
-            <div className="mx-auto grid max-w-[904px] grid-cols-2 justify-items-center gap-x-4 gap-y-6 md:grid-cols-3 lg:ml-5 lg:mr-0 lg:w-[904px] lg:max-w-none lg:grid-cols-[repeat(5,128px)] lg:gap-x-[66px] lg:gap-y-6">
+            <div className="mx-auto grid max-w-[990px] grid-cols-2 justify-items-center gap-x-4 gap-y-6 md:grid-cols-3 lg:mx-auto lg:w-[990px] lg:max-w-none lg:grid-cols-[repeat(5,138px)] lg:gap-x-[73px] lg:gap-y-6">
               {category.skills.map((skill, skillIndex) => {
                 const Icon = skill.icon;
                 return (
@@ -160,8 +160,8 @@ const Skills = () => {
                     role="button"
                     tabIndex={0}
                     style={{
-                      width: '128px',
-                      height: '84px',
+                      width: '138px',
+                      height: '92px',
                       backgroundColor: 'rgba(15, 15, 15, 0.75)',
                       borderRadius: '12px',
                       border: '1px solid rgba(0, 255, 200, 0.18)',
